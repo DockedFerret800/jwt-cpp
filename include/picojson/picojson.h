@@ -34,7 +34,7 @@
 #define PICOJSON_USE_IMPORTED_STD 0
 #endif
 
-#if PICOJSON_USE_IMPORTED_STD
+#if !PICOJSON_USE_IMPORTED_STD
 #include <algorithm>
 #include <cstdio>
 #include <cstdlib>

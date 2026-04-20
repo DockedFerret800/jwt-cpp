@@ -1,6 +1,22 @@
 #ifndef JWT_CPP_JWT_H
 #define JWT_CPP_JWT_H
 
+#if !defined(JWT_CPP_MODULE_INTERFACE_BUILD) || !defined(JWT_USE_IMPORT_STD)
+#include <algorithm>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cstddef>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <stdexcept>
+#include <string>
+#include <utility>
+#include <vector>
+#endif
+
 #ifndef JWT_DISABLE_PICOJSON
 #ifndef PICOJSON_USE_INT64
 #define PICOJSON_USE_INT64
@@ -22,9 +38,6 @@
 #include <openssl/rsa.h>
 #include <openssl/ssl.h>
 
-#ifdef JWT_USE_IMPORT_STD
-import std;
-#else
 #include <algorithm>
 #include <chrono>
 #include <climits>
@@ -45,7 +58,6 @@ import std;
 #ifdef __has_include
 #if __has_include(<experimental/type_traits>)
 #include <experimental/type_traits>
-#endif
 #endif
 #endif
 #endif

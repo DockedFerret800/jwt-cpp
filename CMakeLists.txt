@@ -22,8 +22,8 @@ option(JWT_BUILD_TESTS "Configure CMake to build tests (or not)" OFF)
 option(JWT_BUILD_DOCS "Adds a target for building the doxygen documentation" OFF)
 option(JWT_ENABLE_COVERAGE "Enable code coverage testing" OFF)
 option(JWT_ENABLE_FUZZING "Enable fuzz testing" OFF)
-option(JWT_ENABLE_MODULES "Build C++ modules" OFF)
-option(JWT_USE_IMPORT_STD "Use import std" OFF)
+option(JWT_ENABLE_MODULES "Build C++ modules" ON)
+option(JWT_USE_IMPORT_STD "Use import std" ON)
 
 option(JWT_DISABLE_PICOJSON "Do not provide the picojson template specialiaze" OFF)
 option(JWT_DISABLE_BASE64 "Do not include the base64 implementation from this library" OFF)
@@ -139,7 +139,7 @@ else()
     PUBLIC
       FILE_SET cxx_modules TYPE CXX_MODULES
         BASE_DIRS ${JWT_MODULE_PATH}
-        FILES ${JWT_MODULE_PATH}/jwt.ixx
+        FILES ${JWT_MODULE_PATH}/jwt.cppm
     )
 endif()
 
