@@ -101,7 +101,7 @@ If you are looking to issue or verify more unique tokens, checkout out the [exam
 Building on the goal of providing flexibility.
 
 #### Modules support
-jwt-cpp supports C++20/23 modules. There are two configuration options `JWT_ENABLE_MODULES` to enable modules (С++20) and `JWT_USE_IMPORT_STD` to use `import std` (С++23).
+jwt-cpp supports C++20/23 modules. There are two configuration options: `JWT_ENABLE_MODULES` to enable modules (С++20) and `JWT_USE_IMPORT_STD` to use `import std` (С++23).
 CMake example:
 ```cmake
 set(JWT_ENABLE_MODULES ON)
