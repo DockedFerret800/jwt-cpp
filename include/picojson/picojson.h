@@ -28,6 +28,12 @@
 #ifndef picojson_h
 #define picojson_h
 
+#ifdef JWT_CPP_EXPORT
+#define PICOJSON_JWT_CPP_EXPORT JWT_CPP_EXPORT
+#else
+#define PICOJSON_JWT_CPP_EXPORT
+#endif
+
 #if defined(JWT_CPP_MODULE_INTERFACE_BUILD) && defined(JWT_USE_IMPORT_STD)
 #define PICOJSON_USE_IMPORTED_STD 1
 #else
@@ -144,9 +150,9 @@ enum {
 
 enum { INDENT_WIDTH = 2, DEFAULT_MAX_DEPTHS = 100 };
 
-struct null {};
+PICOJSON_JWT_CPP_EXPORT struct null {};
 
-class value {
+PICOJSON_JWT_CPP_EXPORT class value {
 public:
   typedef std::vector<value> array;
   typedef std::map<std::string, value> object;
@@ -218,8 +224,8 @@ private:
   void clear();
 };
 
-typedef value::array array;
-typedef value::object object;
+PICOJSON_JWT_CPP_EXPORT typedef value::array array;
+PICOJSON_JWT_CPP_EXPORT typedef value::object object;
 
 inline value::value() : type_(null_type), u_() {
 }
@@ -1160,7 +1166,7 @@ inline const std::string &get_last_error() {
   return last_error_t<bool>::s;
 }
 
-inline bool operator==(const value &x, const value &y) {
+PICOJSON_JWT_CPP_EXPORT inline bool operator==(const value &x, const value &y) {
   if (x.is<null>())
     return y.is<null>();
 #define PICOJSON_CMP(type)                                                                                                         \
@@ -1179,7 +1185,7 @@ inline bool operator==(const value &x, const value &y) {
   return false;
 }
 
-inline bool operator!=(const value &x, const value &y) {
+PICOJSON_JWT_CPP_EXPORT inline bool operator!=(const value &x, const value &y) {
   return !(x == y);
 }
 }
@@ -1192,7 +1198,7 @@ template <> inline void swap(picojson::value &x, picojson::value &y) {
 }
 #endif
 
-inline std::istream &operator>>(std::istream &is, picojson::value &x) {
+PICOJSON_JWT_CPP_EXPORT inline std::istream &operator>>(std::istream &is, picojson::value &x) {
   picojson::set_last_error(std::string());
   const std::string err(picojson::parse(x, is));
   if (!err.empty()) {
@@ -1202,7 +1208,7 @@ inline std::istream &operator>>(std::istream &is, picojson::value &x) {
   return is;
 }
 
-inline std::ostream &operator<<(std::ostream &os, const picojson::value &x) {
+PICOJSON_JWT_CPP_EXPORT inline std::ostream &operator<<(std::ostream &os, const picojson::value &x) {
   x.serialize(std::ostream_iterator<char>(os));
   return os;
 }
@@ -1210,6 +1216,7 @@ inline std::ostream &operator<<(std::ostream &os, const picojson::value &x) {
 #pragma warning(pop)
 #endif
 
+#undef PICOJSON_JWT_CPP_EXPORT
 #undef PICOJSON_USE_IMPORTED_STD
 
 #endif

@@ -1,6 +1,14 @@
 #ifndef JWT_CPP_BASE_H
 #define JWT_CPP_BASE_H
 
+#ifndef JWT_CPP_EXPORT
+#if defined(JWT_CPP_MODULE_INTERFACE_BUILD)
+#define JWT_CPP_EXPORT export
+#else
+#define JWT_CPP_EXPORT
+#endif
+#endif
+
 #if !defined(JWT_CPP_MODULE_INTERFACE_BUILD) && defined(JWT_USE_IMPORT_STD)
 import std;
 #elif !defined(JWT_CPP_MODULE_INTERFACE_BUILD)
@@ -34,7 +42,7 @@ namespace jwt {
 		 * As directed in [X.509 Parameter](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7) certificate chains are
 		 * base64-encoded as per [Section 4 of RFC4648](https://datatracker.ietf.org/doc/html/rfc4648#section-4)
 		 */
-		struct base64 {
+		JWT_CPP_EXPORT struct base64 {
 			static const std::array<char, 64>& data() {
 				static constexpr std::array<char, 64> data{
 					{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -73,7 +81,7 @@ namespace jwt {
 		 * > Base64 encoding using the URL- and filename-safe character set defined in
 		 * > [Section 5 of RFC 4648 RFC4648](https://tools.ietf.org/html/rfc4648#section-5), with all trailing '=' characters omitted
 		 */
-		struct base64url {
+		JWT_CPP_EXPORT struct base64url {
 			static const std::array<char, 64>& data() {
 				static constexpr std::array<char, 64> data{
 					{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -110,7 +118,7 @@ namespace jwt {
 			 *
 			 * This is useful in situations outside of JWT encoding/decoding and is provided as a helper
 			 */
-			struct base64url_percent_encoding {
+			JWT_CPP_EXPORT struct base64url_percent_encoding {
 				static const std::array<char, 64>& data() {
 					static constexpr std::array<char, 64> data{
 						{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -142,7 +150,7 @@ namespace jwt {
 			};
 		} // namespace helper
 
-		inline std::uint32_t index(const std::array<std::int8_t, 256>& rdata, char symbol) {
+		JWT_CPP_EXPORT inline std::uint32_t index(const std::array<std::int8_t, 256>& rdata, char symbol) {
 			auto index = rdata[static_cast<unsigned char>(symbol)];
 			if (index <= -1) { throw std::runtime_error("Invalid input: not within alphabet"); }
 			return static_cast<std::uint32_t>(index);
@@ -309,7 +317,7 @@ namespace jwt {
 		 * const auto b64 = jwt::base::encode<jwt::alphabet::base64>("example_data")
 		 * \endcode
 		 */
-		template<typename T>
+		JWT_CPP_EXPORT template<typename T>
 		std::string encode(const std::string& bin) {
 			return details::encode(bin, T::data(), T::fill());
 		}
@@ -323,7 +331,7 @@ namespace jwt {
 		 * const auto b64 = jwt::base::decode<jwt::alphabet::base64>("ZXhhbXBsZV9kYXRh")
 		 * \endcode
 		 */
-		template<typename T>
+		JWT_CPP_EXPORT template<typename T>
 		std::string decode(const std::string& base) {
 			return details::decode(base, T::rdata(), T::fill());
 		}
@@ -337,7 +345,7 @@ namespace jwt {
 		 * const auto b64 = jwt::base::pad<jwt::alphabet::base64>("ZXhhbXBsZV9kYQ")
 		 * \endcode
 		 */
-		template<typename T>
+		JWT_CPP_EXPORT template<typename T>
 		std::string pad(const std::string& base) {
 			return details::pad(base, T::fill());
 		}
@@ -351,7 +359,7 @@ namespace jwt {
 		 * const auto b64 = jwt::base::trim<jwt::alphabet::base64>("ZXhhbXBsZV9kYQ==")
 		 * \endcode
 		 */
-		template<typename T>
+		JWT_CPP_EXPORT template<typename T>
 		std::string trim(const std::string& base) {
 			return details::trim(base, T::fill());
 		}

@@ -71,15 +71,9 @@ module;
 export module jwt_cpp;
 
 #ifdef JWT_USE_IMPORT_STD
-// Keep std private to jwt_cpp. Re-exporting it makes mixed consumers
-// (gtest, iostream, third-party JSON headers) collide with the MSVC std module.
 import std;
 #endif
 
-// Build the public headers in module purview so imported declarations are
-// attached to jwt_cpp instead of the global module.
 #define JWT_CPP_MODULE_INTERFACE_BUILD 1
-export {
 #include "jwt-cpp/jwt.h"
-}
 #undef JWT_CPP_MODULE_INTERFACE_BUILD
