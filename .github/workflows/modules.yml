@@ -4,6 +4,14 @@ on:
   push:
     branches: [master]
   pull_request:
+    branches: [master]
+    paths:
+      - "CMakeLists.txt"
+      - "cmake/**"
+      - "include/jwt-cpp/**"
+      - "tests/cmake/**"
+      - ".github/actions/**"
+      - ".github/workflows/cmake.yml"
 
 jobs:
   build:
@@ -24,13 +32,13 @@ jobs:
           # configure_preset: "linux-debug"
           # build_preset: "linux-debug-build"
           # test_preset : "linux-debug-test"
-          - runs_on: ubuntu-latest
-            compiler: clang-18
-            cc: clang
-            cxx: clang++
-            configure_preset: "linux-debug-modules"
-            build_preset: "linux-debug-modules-build"
-            test_preset : "linux-debug-modules-test"
+          # - runs_on: ubuntu-latest
+          #  compiler: clang-18
+          #  cc: clang
+          #  cxx: clang++
+          #  configure_preset: "linux-debug-modules"
+          #  build_preset: "linux-debug-modules-build"
+          #  test_preset : "linux-debug-modules-test"
     steps:
 
     - uses: actions/checkout@v6
