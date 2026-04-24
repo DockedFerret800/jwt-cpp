@@ -4,14 +4,6 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [master]
-    paths:
-      - "CMakeLists.txt"
-      - "cmake/**"
-      - "include/jwt-cpp/**"
-      - "tests/cmake/**"
-      - ".github/actions/**"
-      - ".github/workflows/cmake.yml"
 
 jobs:
   build:
