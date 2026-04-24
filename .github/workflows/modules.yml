@@ -1,15 +1,17 @@
 name: Build & Test with modules
 
-on: 
-    push:   
-        branches:
-        - main
-    pull_request:
-        branches:
-        - main
-    workflow_dispatch:
-    release:
-        types: [published]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    paths:
+      - "CMakeLists.txt"
+      - "cmake/**"
+      - "include/jwt-cpp/**"
+      - "tests/cmake/**"
+      - ".github/actions/**"
+      - ".github/workflows/cmake.yml"
 
 jobs:
   build:

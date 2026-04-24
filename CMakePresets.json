@@ -41,7 +41,8 @@
             "architecture": "x64",
             "cacheVariables": {
                 "JWT_ENABLE_MODULES": "ON",
-                "JWT_USE_IMPORT_STD": "ON"
+                "JWT_USE_IMPORT_STD": "ON",
+                "JWT_BUILD_EXAMPLES": "ON"
             }
         },
         {
@@ -53,7 +54,8 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "JWT_ENABLE_MODULES": "ON",
-                "JWT_USE_IMPORT_STD": "ON"
+                "JWT_USE_IMPORT_STD": "ON",
+                "JWT_BUILD_EXAMPLES": "ON"
             },
             "condition": {
                 "type": "equals",
