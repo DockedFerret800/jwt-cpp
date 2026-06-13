@@ -4,7 +4,7 @@ if(POLICY CMP0135) # DOWNLOAD_EXTRACT_TIMESTAMP
   cmake_policy(SET CMP0135 NEW)
 endif()
 
-set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "451f2fe2-a8a2-47c3-bc32-94786d8fc91b")
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "451f2fe2-a8a2-47c3-bc32-94786d8fc91b" CACHE STRING "")
 
 # HUNTER_ENABLED is always set if this package is included in a project using hunter (HunterGate sets it) In this case
 # we will use hunter as well to stay consistent. If not the use can supply it on configure to force using hunter.
@@ -23,7 +23,6 @@ option(JWT_BUILD_DOCS "Adds a target for building the doxygen documentation" OFF
 option(JWT_ENABLE_COVERAGE "Enable code coverage testing" OFF)
 option(JWT_ENABLE_FUZZING "Enable fuzz testing" OFF)
 option(JWT_ENABLE_MODULES "Build C++ modules" OFF)
-option(JWT_USE_IMPORT_STD "Use import std" OFF)
 
 option(JWT_DISABLE_PICOJSON "Do not provide the picojson template specialiaze" OFF)
 option(JWT_DISABLE_BASE64 "Do not include the base64 implementation from this library" OFF)
@@ -113,10 +112,8 @@ if (JWT_ENABLE_MODULES)
 
   set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 
-  if(JWT_USE_IMPORT_STD)
-    if(NOT CMAKE_GENERATOR MATCHES "Visual Studio")
+  if(NOT CMAKE_GENERATOR MATCHES "Visual Studio")
     set(CMAKE_CXX_MODULE_STD 1)
-    endif()
   endif()
 endif()
 
@@ -132,12 +129,7 @@ add_library(jwt-cpp::jwt-cpp ALIAS jwt-cpp) # To match export
 if(NOT JWT_ENABLE_MODULES)
   target_compile_features(jwt-cpp ${JWT_LIBRARY_TYPE} cxx_std_11)
 else()
-  if(NOT JWT_USE_IMPORT_STD)
-      target_compile_features(jwt-cpp ${JWT_LIBRARY_TYPE} cxx_std_20)
-  else()
-      target_compile_features(jwt-cpp ${JWT_LIBRARY_TYPE} cxx_std_23)
-      target_compile_definitions(jwt-cpp PRIVATE JWT_USE_IMPORT_STD)
-  endif()
+    target_compile_features(jwt-cpp ${JWT_LIBRARY_TYPE} cxx_std_23)
     target_sources(jwt-cpp
     PUBLIC
       FILE_SET cxx_modules TYPE CXX_MODULES

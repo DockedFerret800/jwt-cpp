@@ -8,43 +8,6 @@ module;
 #define WIN32_LEAN_AND_MEAN 1
 #endif
 
-#ifndef JWT_USE_IMPORT_STD
-#include <algorithm>
-#include <array>
-#include <chrono>
-#include <climits>
-#include <cmath>
-#include <cstddef>
-#include <cstdint>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <cerrno>
-#include <cinttypes>
-#include <exception>
-#include <float.h>
-#include <functional>
-#include <iomanip>
-#include <iterator>
-#include <limits>
-#include <locale>
-#include <locale.h>
-#include <map>
-#include <memory>
-#include <set>
-#include <sstream>
-#include <stdexcept>
-#include <string>
-#include <string_view>
-#include <system_error>
-#include <tuple>
-#include <type_traits>
-#include <unordered_map>
-#include <utility>
-#include <variant>
-#include <vector>
-#include <cwchar>
-#else
 #include <errno.h>
 #include <inttypes.h>
 #include <locale.h>
@@ -53,7 +16,6 @@ module;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#endif
 
 #include <openssl/ec.h>
 #include <openssl/ecdsa.h>
@@ -70,9 +32,7 @@ module;
 
 export module jwt_cpp;
 
-#ifdef JWT_USE_IMPORT_STD
 import std;
-#endif
 
 #define JWT_CPP_MODULE_INTERFACE_BUILD 1
 #include "jwt-cpp/jwt.h"

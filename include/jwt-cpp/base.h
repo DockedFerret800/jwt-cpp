@@ -9,9 +9,7 @@
 #endif
 #endif
 
-#if !defined(JWT_CPP_MODULE_INTERFACE_BUILD) && defined(JWT_USE_IMPORT_STD)
-import std;
-#elif !defined(JWT_CPP_MODULE_INTERFACE_BUILD)
+#if !defined(JWT_CPP_MODULE_INTERFACE_BUILD)
 #include <algorithm>
 #include <array>
 #include <cstddef>

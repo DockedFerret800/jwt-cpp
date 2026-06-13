@@ -11,12 +11,7 @@
 #include <string>
 #include <jwt-cpp/jwt.h>
 #else
-#ifdef JWT_USE_IMPORT_STD
 import std;
-#else
-#include <iostream>
-#include <string>
-#endif
 import jwt_cpp;
 #endif
 

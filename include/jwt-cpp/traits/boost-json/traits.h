@@ -2,7 +2,7 @@
 #define JWT_CPP_BOOSTJSON_TRAITS_H
 
 #define JWT_DISABLE_PICOJSON
-#if defined(JWT_ENABLE_MODULES) && !defined(JWT_USE_IMPORT_STD)
+#if defined(JWT_ENABLE_MODULES)
 import jwt_cpp;
 #else
 #include "jwt-cpp/jwt.h"

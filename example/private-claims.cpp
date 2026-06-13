@@ -6,13 +6,7 @@
 #include <sstream>
 #include <jwt-cpp/jwt.h>
 #else
-#ifdef JWT_USE_IMPORT_STD
 import std;
-#else
-#include <chrono>
-#include <iostream>
-#include <sstream>
-#endif
 import jwt_cpp;
 #endif
 
