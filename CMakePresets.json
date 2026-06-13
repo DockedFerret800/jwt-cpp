@@ -36,25 +36,23 @@
         },
         {
             "name": "x64-vs-modules",
-            "displayName": "x64 (VS generator) with Modules",
+            "displayName": "x64 (VS generator) with Modules (CI)",
             "inherits": "windows-vs-base",
             "architecture": "x64",
             "cacheVariables": {
                 "JWT_ENABLE_MODULES": "ON",
-                "JWT_USE_IMPORT_STD": "ON",
                 "JWT_BUILD_EXAMPLES": "ON"
             }
         },
         {
-            "name": "linux-debug-modules",
-            "displayName": "Linux Debug with Modules",
+            "name": "linux-modules",
+            "displayName": "Linux Debug with Modules (CI)",
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "JWT_ENABLE_MODULES": "ON",
-                "JWT_USE_IMPORT_STD": "ON",
                 "JWT_BUILD_EXAMPLES": "ON"
             },
             "condition": {
@@ -75,8 +73,8 @@
             "configurePreset": "x64-vs-modules"
         },
         {
-            "name": "linux-debug-modules-build",
-            "configurePreset": "linux-debug-modules"
+            "name": "linux-modules-build",
+            "configurePreset": "linux-modules"
         }
     ],
     "testPresets": [
@@ -90,8 +88,8 @@
             "configurePreset": "x64-vs-modules"
         },
         {
-            "name": "linux-debug-modules-test",
-            "configurePreset": "linux-debug-modules"
+            "name": "linux-modules-test",
+            "configurePreset": "linux-modules"
         }
     ]
 }
